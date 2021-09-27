@@ -3,11 +3,22 @@
   background-color: rgb(71, 71, 71);
   border-radius: 10px;
 }
-.item {
+.item a {
   color: rgb(255, 255, 255);
   margin: 20px;
+  text-decoration: none;
+  font-family: Verdana, Helvetica, Arial, sans-serif;
 }
 
 .itemS {
   margin-top: 70px;
+  margin-left: 20px;
+}
+
+.itemA {
+  margin: 20px;
+}
+
+.item a.word {
+  color: rgb(255, 36, 0);
 }
