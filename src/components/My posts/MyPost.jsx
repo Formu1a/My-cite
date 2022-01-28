@@ -1,9 +1,25 @@
 import s from './MyPost.module.css'
 import Post from './Post';
+import React from 'react';
+import {addPostActionCreator,updateNewPostTextActionCreator} from '../redux/state'
 
 
 
 const MyPost = (props) => {
+
+    let postsElement = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts}/> )
+
+    let newPostElement = React.createRef();
+
+    let addPost =()=>{
+        props.dispatch(addPostActionCreator())
+    }
+
+    let onPostChange = () =>{
+        let text = newPostElement.current.value
+        props.dispatch(updateNewPostTextActionCreator(text))
+    }
+
     return( 
     <div>
         <div className={s.post}>
@@ -12,12 +28,11 @@ const MyPost = (props) => {
             </h3>
         </div >
         <div className={s.text}>
-            <textarea name="Your news" id="" cols="105" rows="4" placeholder="your news......" maxLength="1000"  ></textarea>
-            <button className={s.button}>Send</button>
+            <textarea name="Your news" onChange={onPostChange} value={props.newPostText} ref={newPostElement}  cols="105" rows="4" placeholder="your news......" maxLength="1000"  />
+            <button onClick={addPost} className={s.button}>Send</button>
         </div>
         <div className={s.item}>
-            <Post message='Hey,why nobody love me ?' likeCounts="23"/>
-            <Post message='Its our new program! Hey! ' likeCounts="0"/>
+            {postsElement}
         </div>
         
     </div>

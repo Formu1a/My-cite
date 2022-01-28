@@ -11,6 +11,7 @@
 }
 
 .massage {
+  padding: 10px;
 }
 
 .Dialogsitem {
@@ -19,4 +20,13 @@
 
 .Dialogsitem .active {
   color: rgb(255, 36, 00);
+}
+
+.writeMessage button {
+  background-color: aqua;
+  outline: none;
+  border-radius: 20px;
+  border: outset;
+  width: 70px;
+  height: 35px;
 }

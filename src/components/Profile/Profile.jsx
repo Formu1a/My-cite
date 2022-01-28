@@ -1,44 +1,16 @@
 import Post from '../My posts/MyPost';
 import s from './Profile.module.css'
+import Profileinfo from './Profileinfo/Profileinfo';
 
 
 
 
-const Profile = () =>{
+const Profile = (props) =>{
     return <div>
-    <div className={s.photo}>
-    <img src='https://data.whicdn.com/images/331364165/original.jpg'></img>
+        <Profileinfo/>
+        <Post posts={props.profilePage.posts} dispatch={props.dispatch} newPostText={props.profilePage.newPostText}  />
     </div>
-    <div className={s.photoA}>
-    <img src='https://cdn.dribbble.com/users/1040983/screenshots/5630845/beard2-01_4x.png?compress=1&resize=400x300'></img>
-    </div>
-    <div>
-        <h4 className={s.name}>
-            Borisevich.K
-        </h4>
-    </div>
-    <div className={s.info}>
-        Date of Birth: 18 July<br />
-        City: Minsk<br />
-        Education: BNTU'24<br />
-        Web-site:non<br />
-    </div>
-    <div>
-        <Post/>
-    </div>
-</div>
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 export default Profile;

@@ -1,34 +1,42 @@
+import { NavLink } from 'react-router-dom';
 import s from './Dialogs.module.css'
+import Dialogitem from './DialogItem/DialogItem';
+import Message from './Message/Message'
+import React from 'react';
+import {addMessageActionCreator,updateNewMessageTextActionCreator} from '../redux/state'
+
+
 
 const Dialogs = (props) => {
+
+
+    let newMessage = React.createRef();
+    let newMessageText = props.dialogsPage.newMessageText
+
+    let buttonMessage = ()=>{props.dispatch(addMessageActionCreator())}
+    
+
+
+    let onChangeMessage =()=>{
+    let text = newMessage.current.value;
+    props.dispatch(updateNewMessageTextActionCreator(text))
+}
+
+    let messagesElements = props.dialogsPage.messages.map(m =><Message dialog={m.message}/> )
+    let dialogsElements = props.dialogsPage.dialogs.map(d=><Dialogitem name = {d.name} id={d.id}/>)    
     return(
         <div className={s.Dialogs} >
             <div className={s.Dialogsitem}>
-                <div className={s.dialog + ' ' + s.active}>
-                    Dima
-                </div>
-                {/* <div className={s.dialog}>
-                    <Navlink to='/Arina'>Arina</Navlink>
-                </div>
-                <div className={s.dialog}>
-                    <Navlink to='/Arina'>Anton</Navlink>
-                </div>
-                <div className={s.dialog}>
-                    <Navlink to='/Arina'>Anton</Navlink>
-                </div>
-                <div className={s.dialog}>
-                    <Navlink to='/Arina'>Igor</Navlink>
-                </div>
-                <div className={s.dialog}>
-                    <Navlink to='/Arina'>Yoto</Navlink>
-                </div> */}
+                {dialogsElements}
             </div>
-            <div className={s.Massages}>
-                <div className={s.massage}>Hi</div>
-                <div className={s.massage}>How are you</div>
-                <div className={s.massage}>yooooooooo</div>
-
+            <div className={`${s.Massages} ${s.writeMessage}`}>
+                <div>{messagesElements}</div>
+                <div>
+                    <div><textarea onChange={onChangeMessage} value={newMessageText} ref={newMessage}/></div>
+                    <div><button  onClick={buttonMessage} >send</button></div>
+                </div>
             </div>
+            
         </div>
     )
     
