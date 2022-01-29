@@ -14,6 +14,7 @@ import { Route } from 'react-router';
 const App = (props) => {
   let someDialogs = ()=> <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch}/>
   let someProfile = ()=> <Profile profilePage={props.state.profilePage} dispatch={props.dispatch} />
+  
   let someNews = ()=> <News/>
   let someMusic  = ()=> <Music/>
   let someSettings = ()=> <Settings/>
@@ -32,11 +33,12 @@ const App = (props) => {
       <Route path='/Music' render={someMusic}/>                          
       <Route path='/Settings' render={someSettings}/>
       </div>
-
+    
      {/* path как ссылка по которой мы переходим */}
 
-
+    
     </div>
+  
   );
 } 
 
