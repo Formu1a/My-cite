@@ -1,8 +1,9 @@
 .nav {
   grid-area: n;
-  background-color: rgb(71, 71, 71);
+  background-color: #142948;
   border-radius: 10px;
   box-shadow: 0px 0px 70px rgb(71, 71, 71);
+  opacity: 85%;
 }
 .item a {
   color: rgb(255, 255, 255);
