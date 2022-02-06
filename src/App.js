@@ -8,6 +8,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import { Route } from "react-router";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/login/Login";
 
 const App = () => {
     let someDialogs = () => <DialogsContainer />;
@@ -33,6 +34,7 @@ const App = () => {
                 <Route path="/Music" render={someMusic} />
                 <Route path="/Settings" render={someSettings} />
                 <Route path="/users" render={() => <UsersContainer />} />
+                <Route path="/login" render={() => <Login />} />
             </div>
 
             {/* path как ссылка по которой мы переходим */}

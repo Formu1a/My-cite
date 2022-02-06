@@ -16,6 +16,20 @@ export const usersAPI = {
                 return response.data;
             });
     },
+    follow(userId) {
+        return instance.post(`follow/${userId}`);
+    },
+    unfollow(userId) {
+        return instance.delete(`follow/${userId}`);
+    },
+    auth() {
+        return instance.get(`auth/me`, {
+            withCredentials: true,
+        });
+    },
+    getProfile(userId) {
+        return instance.get(`profile/` + userId);
+    },
 };
 
 export const getUsers = (currentPage = 1, pageSize = 10) => {

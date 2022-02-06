@@ -1,3 +1,6 @@
+import { getUsers } from "../../api/api";
+import { usersAPI } from "../../api/api";
+
 let FOLLOW = "FOLLOW";
 let UNFOLLOW = "UNFOLLOW";
 let SET_USERS = "SET_USERS";
@@ -66,13 +69,13 @@ const usersReducer = (state = initialState, action) => {
     }
 };
 
-export const follow = (userId) => {
+export const followSuccess = (userId) => {
     return {
         type: FOLLOW,
         userId,
     };
 };
-export const unfollow = (userId) => {
+export const unfollowSuccess = (userId) => {
     return { type: UNFOLLOW, userId };
 };
 export const setUsers = (users) => {
@@ -89,6 +92,39 @@ export const toggleIsFetching = (isFetching) => {
 };
 export const toggleIsFollowingProgress = (isFetching, userId) => {
     return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId };
+};
+
+export const getUsersThunkCreator = (currentPage, pageSize) => {
+    return (dispatch) => {
+        dispatch(toggleIsFetching(true));
+        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+            dispatch(toggleIsFetching(false));
+            dispatch(setUsers(data.items));
+            // this.props.setTotalUsersCount(response.data.totalCount); -- показывает всех пользоватетлей (1700) много страниц будет
+        });
+    };
+};
+export const follow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        usersAPI.follow(userId).then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(followSuccess(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
+};
+export const unfollow = (userId) => {
+    return (dispatch) => {
+        dispatch(toggleIsFollowingProgress(true, userId));
+        usersAPI.unfollow(userId).then((response) => {
+            if (response.data.resultCode === 0) {
+                dispatch(unfollowSuccess(userId));
+            }
+            dispatch(toggleIsFollowingProgress(false, userId));
+        });
+    };
 };
 
 export default usersReducer;
