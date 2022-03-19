@@ -2,7 +2,7 @@
     grid-area: n;
     background-color: #142948;
     border-radius: 10px;
-    box-shadow: 0px 0px 70px rgb(71, 71, 71);
+    box-shadow: 0px 0px 15px rgb(255, 255, 255);
     opacity: 85%;
 }
 .item a {

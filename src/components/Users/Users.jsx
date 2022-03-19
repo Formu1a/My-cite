@@ -12,7 +12,7 @@ let Users = (props) => {
     }
     return (
         <div>
-            <div>
+            <div className={s.number}>
                 {pages.map((e) => {
                     return (
                         <span
@@ -45,6 +45,7 @@ let Users = (props) => {
                         <div>
                             {e.followed ? (
                                 <button
+                                    className={s.aButton}
                                     disabled={props.followingInProgress.some(
                                         (id) => id === e.id
                                     )}
@@ -56,6 +57,7 @@ let Users = (props) => {
                                 </button>
                             ) : (
                                 <button
+                                    className={s.dButton}
                                     disabled={props.followingInProgress.some(
                                         (id) => id === e.id
                                     )}

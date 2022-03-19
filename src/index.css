@@ -5,7 +5,7 @@ body {
         "Helvetica Neue", sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background: url("https://steamuserimages-a.akamaihd.net/ugc/786288600164779293/999A0C5C8D0B795CDD1C985905BD6DDFEBC9A2A3/");
+    background: url("../src/components/assets/img/back.jpg");
     overflow-x: hidden;
 }
 

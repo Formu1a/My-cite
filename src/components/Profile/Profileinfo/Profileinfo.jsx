@@ -12,7 +12,7 @@ const Profileinfo = (props) => {
         <div>
             <div className={s.photo}>
                 <img
-                    src="https://data.whicdn.com/images/331364165/original.jpg"
+                    src="https://weandthecolor.com/wp-content/uploads/2020/12/Japan-Nights-by-Aishy.jpg"
                     alt="none"
                 ></img>
             </div>

@@ -4,12 +4,13 @@
 }
 
 .photo img {
-    border-radius: 25px;
-    width: 1250px;
+    border-radius: 25px 25px 0 0;
+    width: 992px;
     height: 220px;
 }
 
 .photoA img {
+    border-radius: 50%;
     width: 250px;
     position: relative;
 }
