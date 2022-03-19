@@ -1,5 +1,4 @@
 import Preloader from "../../common/preloader/preloader";
-import Profile from "../Profile";
 import s from "./Profileinfo.module.css";
 import ProfileStatus from "./ProfileStatus";
 
@@ -26,7 +25,10 @@ const Profileinfo = (props) => {
             </div>
 
             <div className={s.info}>
-                <ProfileStatus status={"hello"} />
+                <ProfileStatus
+                    status={props.status}
+                    updateStatus={props.updateStatus}
+                />
                 Date of Birth: 18 July
                 <br />
                 City: Minsk
