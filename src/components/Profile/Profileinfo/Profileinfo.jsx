@@ -1,6 +1,7 @@
 import Preloader from "../../common/preloader/preloader";
 import Profile from "../Profile";
 import s from "./Profileinfo.module.css";
+import ProfileStatus from "./ProfileStatus";
 
 const Profileinfo = (props) => {
     if (!props.profile) {
@@ -15,6 +16,7 @@ const Profileinfo = (props) => {
                     alt="none"
                 ></img>
             </div>
+
             <div className={s.photoA}>
                 <img alt="none" src={props.profile.photos.large}></img>
             </div>
@@ -22,7 +24,9 @@ const Profileinfo = (props) => {
             <div>
                 <h4 className={s.name}>{props.profile.fullName}</h4>
             </div>
+
             <div className={s.info}>
+                <ProfileStatus status={"hello"} />
                 Date of Birth: 18 July
                 <br />
                 City: Minsk
