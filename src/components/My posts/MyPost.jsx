@@ -1,39 +1,46 @@
-import s from './MyPost.module.css'
-import Post from './Post';
-import React from 'react';
+import s from "./MyPost.module.css";
+import Post from "./Post";
+import React from "react";
+import { reduxForm, Field } from "redux-form";
 
+const addNewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <div>
+                <Field component="textarea" name="newPostText" />
+            </div>
+            <div>
+                <button>send</button>
+            </div>
+        </form>
+    );
+};
+
+const AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
+    addNewPostForm
+);
 
 const MyPost = (props) => {
-    
-    let postsElement = props.posts.map(p => <Post message={p.message} likeCounts={p.likeCounts}/> )
-    
+    let postsElement = props.posts.map((p) => (
+        <Post message={p.message} likeCounts={p.likeCounts} />
+    ));
+
     let newPostElement = React.createRef();
 
-    let addPost =()=>{
-        props.addPost();
-    }
-    let onPostChange = () =>{
-        let text = newPostElement.current.value
-        props.updateNewPostText(text)
-    }
+    let addPost = (values) => {
+        props.addPost(values.newPostText);
+    };
 
-    return( 
-    <div>
-        <div className={s.post}>
-            <h3>
-                My Posts
-            </h3>
-        </div >
-        <div className={s.text}>
-            <textarea name="Your news" onChange={onPostChange} value={props.newPostText} ref={newPostElement}  cols="105" rows="4" placeholder="your news......" maxLength="1000"  />
-            <button onClick={addPost} className={s.button}>Send</button>
+    return (
+        <div>
+            <div className={s.post}>
+                <h3>My Posts</h3>
+                <AddNewPostFormRedux onSubmit={addPost} />
+            </div>
+
+            <div className={s.item}>{postsElement}</div>
         </div>
-        <div className={s.item}>
-            {postsElement}
-        </div>
-        
-    </div>
     );
-}
+};
 
 export default MyPost;
