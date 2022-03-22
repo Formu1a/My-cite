@@ -5,6 +5,7 @@ import { reduxForm, Field } from "redux-form";
 import { requiredField } from "../../utils/validators/validators";
 import { Input } from "../common/FormsControl/FormsControls";
 import { login } from "../redux/auth-reducer";
+import s from "../common/FormsControl/formsControls.module.css";
 
 const LoginForm = (props) => {
     return (
@@ -35,6 +36,9 @@ const LoginForm = (props) => {
                 />{" "}
                 Remember me{" "}
             </div>
+            {props.error && (
+                <div className={s.formSummaryError}>{props.error}</div>
+            )}
             <div>
                 <button>Login</button>
             </div>
