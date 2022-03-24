@@ -94,10 +94,11 @@ export const toggleIsFollowingProgress = (isFetching, userId) => {
     return { type: TOGGLE_IS_FOLLOWING_PROGRESS, isFetching, userId };
 };
 
-export const getUsersThunkCreator = (currentPage, pageSize) => {
+export const getUsersThunkCreator = (page, pageSize) => {
     return (dispatch) => {
         dispatch(toggleIsFetching(true));
-        usersAPI.getUsers(currentPage, pageSize).then((data) => {
+        dispatch(setCurrentPage(page));
+        usersAPI.getUsers(page, pageSize).then((data) => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
             // this.props.setTotalUsersCount(response.data.totalCount); -- показывает всех пользоватетлей (1700) много страниц будет
