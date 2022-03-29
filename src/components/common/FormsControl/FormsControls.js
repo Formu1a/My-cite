@@ -1,13 +1,13 @@
 import React from "react";
 import s from "./formsControls.module.css";
 
-const FormControl = ({ input, meta, ...props }) => {
-    const hasError = meta.touched && meta.error;
+const FormControl = ({ input, meta: { touched, error }, children }) => {
+    const hasError = touched && error;
 
     return (
         <div className={s.formControl + " " + (hasError ? s.error : "")}>
-            <div>{props.children}</div>
-            {meta.touched && meta.error && <span>{meta.error}</span>}
+            <div>{children}</div>
+            {touched && error && <span>{error}</span>}
         </div>
     );
 };
@@ -29,3 +29,23 @@ export const Input = (props) => {
         </FormControl>
     );
 };
+
+// export const createFieldAll = (
+//     placeholder,
+//     name,
+//     component,
+//     validate,
+//     props = {},
+//     text = ""
+// ) => {
+//     <div>
+//         <Field
+//             placeholder={placeholder}
+//             name={name}
+//             validate={validate}
+//             component={component}
+//             {...props}
+//         />
+//         {text}
+//     </div>;
+// };

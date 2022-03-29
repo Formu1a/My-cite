@@ -2,8 +2,8 @@ import Preloader from "../../common/preloader/preloader";
 import s from "./Profileinfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
-const Profileinfo = (props) => {
-    if (!props.profile) {
+const Profileinfo = ({ profile, status, updateStatus }) => {
+    if (!profile) {
         return <Preloader />;
     }
 
@@ -17,17 +17,17 @@ const Profileinfo = (props) => {
             </div>
 
             <div className={s.photoA}>
-                <img alt="none" src={props.profile.photos.large}></img>
+                <img alt="none" src={profile.photos.large}></img>
             </div>
 
             <div>
-                <h4 className={s.name}>{props.profile.fullName}</h4>
+                <h4 className={s.name}>{profile.fullName}</h4>
             </div>
 
             <div className={s.info}>
                 <ProfileStatusWithHooks
-                    status={props.status}
-                    updateStatus={props.updateStatus}
+                    status={status}
+                    updateStatus={updateStatus}
                 />
                 Date of Birth: 18 July
                 <br />
@@ -35,7 +35,7 @@ const Profileinfo = (props) => {
                 <br />
                 Education: BNTU'24
                 <br />
-                {props.profile.aboutMe}
+                {profile.aboutMe}
                 <br />
             </div>
         </div>

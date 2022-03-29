@@ -7,9 +7,9 @@ import { Input } from "../common/FormsControl/FormsControls";
 import { login } from "../redux/auth-reducer";
 import s from "../common/FormsControl/formsControls.module.css";
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <Field
                     placeholder={"Email"}
@@ -36,9 +36,7 @@ const LoginForm = (props) => {
                 />{" "}
                 Remember me{" "}
             </div>
-            {props.error && (
-                <div className={s.formSummaryError}>{props.error}</div>
-            )}
+            {error && <div className={s.formSummaryError}>{error}</div>}
             <div>
                 <button>Login</button>
             </div>
