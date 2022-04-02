@@ -15,7 +15,7 @@ import Preloader from "./components/common/preloader/preloader";
 import { initializeApp } from "./components/redux/app-reducer";
 import React from "react";
 import store from "./components/redux/redux-store";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 
 const DialogsContainer = React.lazy(() =>
@@ -42,29 +42,33 @@ class App extends Component {
 
         return (
             <div className="app-wrapper">
-                <HeaderContainer />
-                <Navbar />
+                <Suspense
+                    fallback={
+                        <div>
+                            <Preloader />
+                        </div>
+                    }
+                >
+                    <HeaderContainer />
+                    <Navbar />
 
-                <div className="app-wrapper-content">
-                    <Suspense
-                        fallback={
-                            <div>
-                                <Preloader />
-                            </div>
-                        }
-                    >
+                    <div className="app-wrapper-content">
                         <Route path="/Dialogs" render={someDialogs} />
                         <Route
                             path="/Profile/:userId?"
                             render={() => <ProfileContainer />}
                         />
-                    </Suspense>
-                    <Route path="/News" render={someNews} />
-                    <Route path="/Music" render={someMusic} />
-                    <Route path="/Settings" render={someSettings} />
-                    <Route path="/users" render={() => <UsersContainer />} />
-                    <Route path="/login" render={() => <Login />} />
-                </div>
+
+                        <Route path="/News" render={someNews} />
+                        <Route path="/Music" render={someMusic} />
+                        <Route path="/Settings" render={someSettings} />
+                        <Route
+                            path="/users"
+                            render={() => <UsersContainer />}
+                        />
+                        <Route path="/login" render={() => <Login />} />
+                    </div>
+                </Suspense>
             </div>
         );
     }
@@ -81,13 +85,11 @@ let AppContainer = compose(
 
 const JsApp = (props) => {
     return (
-        <BrowserRouter>
-            <React.StrictMode>
-                <Provider store={store}>
-                    <AppContainer />
-                </Provider>
-            </React.StrictMode>
-        </BrowserRouter>
+        <HashRouter>
+            <Provider store={store}>
+                <AppContainer />
+            </Provider>
+        </HashRouter>
     );
 };
 

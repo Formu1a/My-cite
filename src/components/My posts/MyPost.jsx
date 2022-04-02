@@ -33,7 +33,7 @@ const AddNewPostFormRedux = reduxForm({ form: "ProfileAddNewPostForm" })(
 
 const MyPost = React.memo((props) => {
     let postsElement = props.posts.map((p) => (
-        <Post message={p.message} likeCounts={p.likeCounts} />
+        <Post key={p.id} message={p.message} likeCounts={p.likeCounts} />
     ));
 
     let newPostElement = React.createRef();
