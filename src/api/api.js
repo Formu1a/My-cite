@@ -28,11 +28,12 @@ export const usersAPI = {
         });
     },
 
-    login(email, password, rememberMe = false) {
+    login(email, password, rememberMe = false, captcha = null) {
         return instance.post(`auth/login`, {
             email,
             password,
             rememberMe,
+            captcha,
         });
     },
     logout() {
@@ -66,4 +67,9 @@ export const getUsers = (currentPage = 1, pageSize = 10) => {
     return instance.get(`users?page=$`).then((response) => {
         return response.data;
     });
+};
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance.get(`security/get-captcha-url`);
+    },
 };

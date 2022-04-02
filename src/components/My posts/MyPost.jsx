@@ -36,8 +36,6 @@ const MyPost = React.memo((props) => {
         <Post key={p.id} message={p.message} likeCounts={p.likeCounts} />
     ));
 
-    let newPostElement = React.createRef();
-
     let addPost = (values) => {
         props.addPost(values.newPostText);
     };

@@ -54,7 +54,7 @@ const usersReducer = (state = initialState, action) => {
                 followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(
-                          (id) => id != action.userId
+                          (id) => id !== action.userId
                       ),
             };
         }
@@ -95,7 +95,7 @@ export const getUsersThunkCreator = (page, pageSize) => {
         usersAPI.getUsers(page, pageSize).then((data) => {
             dispatch(toggleIsFetching(false));
             dispatch(setUsers(data.items));
-            // this.props.setTotalUsersCount(response.data.totalCount); -- показывает всех пользоватетлей (1700) много страниц будет
+            dispatch(setTotalUsersCount(data.totalCount));
         });
     };
 };
@@ -108,7 +108,7 @@ const followUnfollowFlow = async (
 ) => {
     dispatch(toggleIsFollowingProgress(true, userId));
     let response = await apiMethod(userId);
-    if (response.data.resultCode == 0) {
+    if (response.data.resultCode === 0) {
         dispatch(actionCreator(userId));
     }
     dispatch(toggleIsFollowingProgress(false, userId));

@@ -8,10 +8,7 @@ import {
     saveProfile,
 } from "../redux/profile-reducer";
 import React from "react";
-import {
-    Redirect,
-    withRouter,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { withRouter } from "react-router-dom/cjs/react-router-dom.min";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
@@ -32,8 +29,8 @@ class ProfileContainer extends React.Component {
         this.refreshProfile();
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.props.match.params.userId != prevProps.match.params.userId)
+    componentDidUpdate(prevProps) {
+        if (this.props.match.params.userId !== prevProps.match.params.userId)
             this.refreshProfile();
     }
 

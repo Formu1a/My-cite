@@ -14,9 +14,6 @@ import {
 const Dialogs = (props) => {
     let state = props.dialogsPage;
 
-    let newMessage = React.createRef();
-    let newMessageText = state.newMessageText;
-
     let addNewMessage = (values) => {
         props.addMessageActionCreator(values.newMessageText);
     };

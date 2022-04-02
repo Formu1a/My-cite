@@ -11,6 +11,7 @@ let User = ({ user, followingInProgress, unfollow, follow }) => {
                     <NavLink to={"/profile/" + user.id}>
                         {" "}
                         <img
+                            alt="none"
                             src={
                                 user.photos.small != null
                                     ? user.photos.small

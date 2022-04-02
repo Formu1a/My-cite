@@ -2,7 +2,7 @@ import Preloader from "../../common/preloader/preloader";
 import s from "./Profileinfo.module.css";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 import userPhoto from "../../assets/img/def.jpg";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ProfileDataForm from "./ProfileDataForm";
 
 const Profileinfo = ({
@@ -44,7 +44,7 @@ const Profileinfo = ({
             </div>
 
             <div className={s.photoA}>
-                <img src={profile.photos.large || userPhoto} />
+                <img alt="none" src={profile.photos.large || userPhoto} />
             </div>
 
             <div>
@@ -71,11 +71,6 @@ const Profileinfo = ({
                         }}
                     />
                 )}
-                {/* <ProfileData
-                    profile={profile}
-                    status={status}
-                    updateStatus={updateStatus}
-                /> */}
             </div>
         </div>
     );
